@@ -8,20 +8,21 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      
-      - name: Checkout submodules
-        run: git submodule update --init --recursive --remote
+        with:
+          submodules: recursive
 
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: 17
+          check-latest: true
 
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
+          check-latest: true
 
       - uses: actions/cache@v3
         with:
@@ -42,7 +43,7 @@ jobs:
           echo keystore.password="$SIGNING_STORE_PASSWORD" > signing.properties
           echo key.alias="$SIGNING_KEY_ALIAS" >> signing.properties
           echo key.password="$SIGNING_KEY_PASSWORD" >> signing.properties
-            
+
           echo "cat signing.properties"
           cat signing.properties
 
@@ -50,7 +51,7 @@ jobs:
         if: success()
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: --no-daemon app:assembleMeta-AlphaRelease
+          arguments: --no-daemon app:assembleMeta-AlphaRelease --info
 
       - name: Delete current release assets
         uses: andreaswilli/delete-release-assets-action@v2.0.0
@@ -68,10 +69,9 @@ jobs:
 
       - name: Upload Alpha
         uses: softprops/action-gh-release@v1
-        if: ${{  success() }}
+        if: success()
         with:
           tag: ${{ github.ref_name }}
           tag_name: Prerelease-alpha
           files: app/build/outputs/apk/meta-alpha/release/*
           prerelease: true
-          generate_release_notes: true

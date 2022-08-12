@@ -34,13 +34,13 @@ subprojects {
     extensions.configure<BaseExtension> {
         defaultConfig {
             if (isApp) {
-                applicationId = "com.github.metacubex.clash"
+                applicationId = "com.github.metacubex.clash.patch"
             }
 
-            minSdk = 21
+            minSdk = 29
             targetSdk = 31
 
-            versionName = "2.5.11-pre02"
+            versionName = "2.5.11-patch"
             versionCode = 205011
 
             resValue("string", "release_name", "v$versionName")
@@ -48,7 +48,7 @@ subprojects {
 
             externalNativeBuild {
                 cmake {
-                    abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                    abiFilters("arm64-v8a")
                 }
             }
 
@@ -59,7 +59,7 @@ subprojects {
             }
         }
 
-        ndkVersion = "23.0.7599858"
+        ndkVersion = "25.0.8775105"
 
         compileSdkVersion(defaultConfig.targetSdk!!)
 
@@ -80,10 +80,6 @@ subprojects {
                 versionNameSuffix = ".Meta-Alpha"
 
                 buildConfigField("boolean", "PREMIUM", "Boolean.parseBoolean(\"false\")")
-
-                if (isApp) {
-                    applicationIdSuffix = ".meta"
-                }
             }
         }
 
@@ -101,7 +97,7 @@ subprojects {
                         keystore.inputStream().use(this::load)
                     }
 
-                    storeFile = rootProject.file("release.keystore")
+                    storeFile = rootProject.file("patch-release.keystore")
                     storePassword = prop.getProperty("keystore.password")!!
                     keyAlias = prop.getProperty("key.alias")!!
                     keyPassword = prop.getProperty("key.password")!!
@@ -111,7 +107,7 @@ subprojects {
 
         buildTypes {
             named("release") {
-                isMinifyEnabled = isApp
+                isMinifyEnabled = true
                 isShrinkResources = isApp
                 signingConfig = signingConfigs.findByName("release")
                 proguardFiles(
@@ -136,7 +132,9 @@ subprojects {
             splits {
                 abi {
                     isEnable = true
-                    isUniversalApk = true
+                    reset()
+                    include("arm64-v8a")
+                    isUniversalApk = false
                 }
             }
         }

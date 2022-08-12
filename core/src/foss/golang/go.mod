@@ -1,6 +1,6 @@
 module foss
 
-go 1.18
+go 1.19
 
 require cfa v0.0.0
 
@@ -60,4 +60,4 @@ replace github.com/Dreamacro/clash => ./clash
 
 replace cfa/blob => ../../../build/intermediates/golang_blob
 
-replace github.com/lucas-clemente/quic-go => github.com/tobyxdd/quic-go v0.28.1-0.20220706211558-7780039ad599
+replace github.com/lucas-clemente/quic-go => github.com/tobyxdd/quic-go v0.28.2-0.20220806194731-5be744e08984
