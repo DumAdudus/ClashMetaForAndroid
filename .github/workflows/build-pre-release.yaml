@@ -51,7 +51,7 @@ jobs:
         if: success()
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: --no-daemon app:assembleMeta-AlphaRelease --info
+          arguments: --no-daemon app:assembleMeta-AlphaRelease
 
       - name: Delete current release assets
         uses: andreaswilli/delete-release-assets-action@v2.0.0
@@ -67,11 +67,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate hashes
+        run: |
+          cd app/build/outputs/apk/meta-alpha/release/
+          for f in $(find . -type f -name *.apk); do
+            sha256sum $f | tee -a hashes.txt
+          done
+
       - name: Upload Alpha
         uses: softprops/action-gh-release@v1
         if: success()
         with:
           tag: ${{ github.ref_name }}
           tag_name: Prerelease-alpha
-          files: app/build/outputs/apk/meta-alpha/release/*
+          files: |
+            app/build/outputs/apk/meta-alpha/release/*.apk
+            app/build/outputs/apk/meta-alpha/release/hashes.txt
           prerelease: true
