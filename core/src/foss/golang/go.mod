@@ -7,6 +7,7 @@ require cfa v0.0.0
 require (
 	cfa/blob v0.0.0 // indirect
 	github.com/Dreamacro/clash v1.7.1 // indirect
+	github.com/HyNetwork/hysteria v1.2.0 // indirect
 	github.com/Kr328/tun2socket v0.0.0-20220414050025-d07c78d06d34 // indirect
 	github.com/cheekybits/genny v1.0.0 // indirect
 	github.com/dlclark/regexp2 v1.7.0 // indirect
@@ -16,7 +17,7 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/insomniacslk/dhcp v0.0.0-20220822114210-de18a9d48e84 // indirect
 	github.com/klauspost/cpuid/v2 v2.1.0 // indirect
-	github.com/kr/text v0.2.0 // indirect
+	github.com/kr/pretty v0.3.0 // indirect
 	github.com/lucas-clemente/quic-go v0.28.1 // indirect
 	github.com/lunixbochs/struc v0.0.0-20200707160740-784aaebc1d40 // indirect
 	github.com/marten-seemann/qpack v0.2.1 // indirect
@@ -33,7 +34,6 @@ require (
 	github.com/sagernet/sing-shadowsocks v0.0.0-20220801112336-a91eacdd01e1 // indirect
 	github.com/sagernet/sing-vmess v0.0.0-20220801112355-e1de36a3c90e // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
-	github.com/tobyxdd/hysteria v1.2.0 // indirect
 	github.com/u-root/uio v0.0.0-20220204230159-dac05f7d2cb4 // indirect
 	github.com/xtls/go v0.0.0-20210920065950-d4af136d3672 // indirect
 	go.etcd.io/bbolt v1.3.6 // indirect
@@ -47,7 +47,6 @@ require (
 	golang.org/x/text v0.3.8-0.20220124021120-d1c84af989ab // indirect
 	golang.org/x/tools v0.1.12 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
-	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
@@ -61,3 +60,5 @@ replace github.com/Dreamacro/clash => ./clash
 replace cfa/blob => ../../../build/intermediates/golang_blob
 
 replace github.com/lucas-clemente/quic-go => github.com/HyNetwork/quic-go v0.28.2-0.20220806194731-5be744e08984
+
+replace github.com/HyNetwork/hysteria => github.com/DumAdudus/hysteria v0.0.0-20220902030938-f22705be2c71
