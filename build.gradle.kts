@@ -40,7 +40,7 @@ subprojects {
             minSdk = 29
             targetSdk = 31
 
-            versionName = "2.5.11-patch4"
+            versionName = "2.5.12"
             versionCode = 205011
 
             resValue("string", "release_name", "v$versionName")
@@ -59,7 +59,7 @@ subprojects {
             }
         }
 
-        ndkVersion = "25.0.8775105"
+        ndkVersion = "25.1.8937393"
 
         compileSdkVersion(defaultConfig.targetSdk!!)
 
@@ -74,17 +74,17 @@ subprojects {
         productFlavors {
             flavorDimensions("feature")
 
-            create("meta-alpha") {
+            create("meta") {
                 isDefault = true
                 dimension = flavorDimensionList[0]
-                versionNameSuffix = ".Meta-Alpha"
+                versionNameSuffix = ".Meta"
 
                 buildConfigField("boolean", "PREMIUM", "Boolean.parseBoolean(\"false\")")
             }
         }
 
         sourceSets {
-            getByName("meta-alpha") {
+            getByName("meta") {
                 java.srcDirs("src/foss/java")
             }
         }

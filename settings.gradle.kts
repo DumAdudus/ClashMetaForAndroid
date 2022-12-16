@@ -18,22 +18,22 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            val agp = "7.2.1"
-            val kotlin = "1.7.0"
-            val ksp = "$kotlin-1.0.6"
+            val agp = "7.2.2"
+            val kotlin = "1.7.21"
+            val ksp = "$kotlin-1.0.8"
             val golang = "1.0.4"
-            val coroutine = "1.6.3"
+            val coroutine = "1.6.4"
             val coreKtx = "1.8.0"
-            val activity = "1.5.0"
-            val fragment = "1.5.0"
+            val activity = "1.5.1"
+            val fragment = "1.5.4"
             val appcompat = "1.4.2"
             val coordinator = "1.2.0"
             val recyclerview = "1.2.1"
             val viewpager = "1.0.0"
             val material = "1.6.1"
-            val serialization = "1.3.3"
+            val serialization = "1.4.1"
             val kaidl = "1.15"
-            val room = "2.4.2"
+            val room = "2.4.3"
             val multiprocess = "1.0.0"
 
             library("build-android", "com.android.tools.build:gradle:$agp")

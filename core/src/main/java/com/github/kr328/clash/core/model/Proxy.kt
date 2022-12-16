@@ -21,15 +21,13 @@ data class Proxy(
         Pass(false),
 
         Shadowsocks(false),
-        ShadowsocksR(false),
-        Snell(false),
         Socks5(false),
         Http(false),
         Vmess(false),
         Vless(false),
         Trojan(false),
         Hysteria(false),
-
+        Tuic(false),
 
         Relay(true),
         Selector(true),
