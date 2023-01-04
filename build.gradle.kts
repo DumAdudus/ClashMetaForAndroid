@@ -34,14 +34,14 @@ subprojects {
     extensions.configure<BaseExtension> {
         defaultConfig {
             if (isApp) {
-                applicationId = "com.github.metacubex.clash.patch"
+                applicationId = "com.github.metacubex.clash.revanced"
             }
 
             minSdk = 29
-            targetSdk = 31
+            targetSdk = 32
 
-            versionName = "2.5.12"
-            versionCode = 205011
+            versionName = "2.5.13"
+            versionCode = 205013
 
             resValue("string", "release_name", "v$versionName")
             resValue("integer", "release_code", "$versionCode")
@@ -74,17 +74,16 @@ subprojects {
         productFlavors {
             flavorDimensions("feature")
 
-            create("meta") {
+            create("revanced") {
                 isDefault = true
                 dimension = flavorDimensionList[0]
-                versionNameSuffix = ".Meta"
 
                 buildConfigField("boolean", "PREMIUM", "Boolean.parseBoolean(\"false\")")
             }
         }
 
         sourceSets {
-            getByName("meta") {
+            getByName("revanced") {
                 java.srcDirs("src/foss/java")
             }
         }

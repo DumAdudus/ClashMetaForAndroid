@@ -19,7 +19,7 @@ val golangSource = file("src/main/golang/native")
 
 golang {
     sourceSets {
-        create("meta") {
+        create("revanced") {
             tags.set(listOf("foss"))
             srcDir.set(file("src/foss/golang"))
         }
