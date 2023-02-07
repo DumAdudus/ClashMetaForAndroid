@@ -40,8 +40,8 @@ subprojects {
             minSdk = 29
             targetSdk = 32
 
-            versionName = "2.5.13"
-            versionCode = 205013
+            versionName = "2.5.14"
+            versionCode = 205014
 
             resValue("string", "release_name", "v$versionName")
             resValue("integer", "release_code", "$versionCode")
@@ -55,7 +55,7 @@ subprojects {
             if (!isApp) {
                 consumerProguardFiles("consumer-rules.pro")
             } else {
-                setProperty("archivesBaseName", "cmfa-$versionName")
+                setProperty("archivesBaseName", "cmfar-$versionName")
             }
         }
 
