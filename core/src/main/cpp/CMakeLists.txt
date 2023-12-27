@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 
 project(clash-bridge C)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE on)
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Ofast")
 
 set(GO_OUTPUT_BASE ${GO_OUTPUT}/${FLAVOR_NAME})
 

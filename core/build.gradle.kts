@@ -12,8 +12,8 @@ plugins {
 }
 
 val geoipDatabaseUrl =
-    "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-only-cn-private.mmdb"
-val geoipInvalidate = Duration.ofDays(7)!!
+    "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+val geoipInvalidate = Duration.ofDays(1)!!
 val geoipOutput = buildDir.resolve("intermediates/golang_blob")
 val golangSource = file("src/main/golang/native")
 
@@ -38,6 +38,7 @@ android {
                     arguments("-DGO_SOURCE:STRING=${golangSource}")
                     arguments("-DGO_OUTPUT:STRING=${GolangPlugin.outputDirOf(project, null, null)}")
                     arguments("-DFLAVOR_NAME:STRING=$name")
+                    version = "3.22.1"
                 }
             }
         }
@@ -46,6 +47,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
         }
     }
 }

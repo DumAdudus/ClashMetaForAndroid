@@ -38,7 +38,7 @@ subprojects {
             }
 
             minSdk = 29
-            targetSdk = 32
+            targetSdk = 31
 
             versionName = "2.5.14"
             versionCode = 205014
@@ -59,7 +59,7 @@ subprojects {
             }
         }
 
-        ndkVersion = "25.1.8937393"
+        ndkVersion = "26.0.10792818"
 
         compileSdkVersion(defaultConfig.targetSdk!!)
 
