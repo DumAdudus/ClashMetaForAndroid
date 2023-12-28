@@ -1,4 +1,4 @@
-name: build_pre_release
+name: build_release
 on:
   workflow_dispatch:
 
@@ -19,9 +19,9 @@ jobs:
           check-latest: true
 
       - name: Setup Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
-          go-version: 1.19
+          go-version: '1.20'
           check-latest: true
 
       - uses: actions/cache@v3
@@ -44,43 +44,40 @@ jobs:
           echo key.alias="$SIGNING_KEY_ALIAS" >> signing.properties
           echo key.password="$SIGNING_KEY_PASSWORD" >> signing.properties
 
-          echo "cat signing.properties"
-          cat signing.properties
-
-      - name: Pre-release Build
+      - name: Release Build
         if: success()
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: --no-daemon app:assembleMeta-AlphaRelease
+          arguments: --no-daemon app:assembleRevancedRelease
 
       - name: Delete current release assets
         uses: andreaswilli/delete-release-assets-action@v2.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: Prerelease-alpha
+          tag: Release-build
           deleteOnlyFromDrafts: false
 
       - name: Tag Repo
         uses: richardsimko/update-tag@v1
         with:
-          tag_name: Prerelease-alpha
+          tag_name: Release-build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate hashes
         run: |
-          cd app/build/outputs/apk/meta-alpha/release/
+          cd app/build/outputs/apk/revanced/release/
           for f in $(find . -type f -name *.apk); do
             sha256sum $f | tee -a hashes.txt
           done
 
-      - name: Upload Alpha
+      - name: Upload
         uses: softprops/action-gh-release@v1
         if: success()
         with:
           tag: ${{ github.ref_name }}
-          tag_name: Prerelease-alpha
+          tag_name: Release-build
           files: |
-            app/build/outputs/apk/meta-alpha/release/*.apk
-            app/build/outputs/apk/meta-alpha/release/hashes.txt
+            app/build/outputs/apk/revanced/release/*.apk
+            app/build/outputs/apk/revanced/release/hashes.txt
           prerelease: true
